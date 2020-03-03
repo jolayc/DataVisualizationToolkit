@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{1743443C-6D8A-3E6C-B7BF-55FFA192CBAB}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DataVisualizationToolkit/Utilities/Util.cs">
+    <Files>
+      <File FileName="Assets/DataVisualizationToolkit/Utilities/Util.cs" Line="5" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0ef23093-3e62-484d-a166-e492c96b0659" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
