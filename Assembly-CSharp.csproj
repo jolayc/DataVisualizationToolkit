@@ -64,6 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DataVisualizationToolkit\DataPlot\DataPlotter.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DataParser.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DynamicPlotter.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\PlotPoint.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\TimeSeriesGraph.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\GeoPlot\HistoGramOnMap.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\GeoPlot\mrMap.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Core\cheap-ruler-cs\CheapRuler.cs" />
@@ -431,10 +435,6 @@
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Utilities\TelemetryConfigurationButton.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Utilities\VectorEntity.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Utilities\VectorExtensions.cs" />
-    <Compile Include="Assets\DataVisualizationToolkit\TimeSeries\Scripts\DataParser.cs" />
-    <Compile Include="Assets\DataVisualizationToolkit\TimeSeries\Scripts\DynamicPlotter.cs" />
-    <Compile Include="Assets\DataVisualizationToolkit\TimeSeries\Scripts\PlotPoint.cs" />
-    <Compile Include="Assets\DataVisualizationToolkit\TimeSeries\Scripts\TimeSeriesGraph.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Utilities\Util.cs" />
     <Compile Include="Assets\myPlot.cs" />
     <None Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderAndroidNative.txt" />
@@ -464,14 +464,14 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.WindowsMR.Editor">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/ScriptAssemblies/Unity.XR.WindowsMR.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.WindowsMR.Editor">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/ScriptAssemblies/Unity.XR.WindowsMR.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.WindowsMR">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/ScriptAssemblies/Unity.XR.WindowsMR.dll</HintPath>
@@ -680,6 +680,27 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="MapboxAccountsUnity">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/MapboxAccounts/net35/MapboxAccountsUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.Geometry">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.ExtensionMethods">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.ExtensionMethods.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.PbfReader">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.PbfReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.VectorTileReader">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.VectorTileReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.Json">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.IO.Compression">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.IO.Compression/net35/Mapbox.IO.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
@@ -688,27 +709,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.Json">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.Geometry">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.Geometry.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.IO.Compression">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.IO.Compression/net35/Mapbox.IO.Compression.dll</HintPath>
-    </Reference>
-    <Reference Include="MapboxAccountsUnity">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/MapboxAccounts/net35/MapboxAccountsUnity.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.VectorTileReader">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.VectorTileReader.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.PbfReader">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.PbfReader.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.ExtensionMethods">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.ExtensionMethods.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

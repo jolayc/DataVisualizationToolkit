@@ -307,6 +307,27 @@
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="MapboxAccountsUnity">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/MapboxAccounts/net35/MapboxAccountsUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.Geometry">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.ExtensionMethods">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.ExtensionMethods.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.PbfReader">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.PbfReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.VectorTile.VectorTileReader">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.VectorTileReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.Json">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.IO.Compression">
+      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.IO.Compression/net35/Mapbox.IO.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -321,27 +342,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.Json">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.Geometry">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.Geometry.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.IO.Compression">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/ThirdParty/Mapbox.IO.Compression/net35/Mapbox.IO.Compression.dll</HintPath>
-    </Reference>
-    <Reference Include="MapboxAccountsUnity">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/MapboxAccounts/net35/MapboxAccountsUnity.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.VectorTileReader">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.VectorTileReader.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.PbfReader">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.PbfReader.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.VectorTile.ExtensionMethods">
-      <HintPath>/Users/josephlaycano/Projects/Unity/SYSC4907-DataVisualizationToolkit/Assets/DataVisualizationToolkit/Mapbox/Core/Plugins/Mapbox/vector-tile-cs/net46/Mapbox.VectorTile.ExtensionMethods.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
