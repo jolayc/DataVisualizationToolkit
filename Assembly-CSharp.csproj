@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DataVisualizationToolkit\DataPlot\DataPlotter.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DVT_UsageExample.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DataParser.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DynamicPlotter.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\PlotPoint.cs" />
@@ -436,7 +437,6 @@
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Utilities\VectorEntity.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Utilities\VectorExtensions.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Utilities\Util.cs" />
-    <Compile Include="Assets\myPlot.cs" />
     <None Include="Assets\DataVisualizationToolkit\Mapbox\Unity\Location\ExampleGpsTraces\LocationProviderAndroidNative.txt" />
     <None Include="Assets\Resources\Mapbox\MapboxConfiguration.txt" />
     <None Include="Assets\MixedRealityToolkit.Providers\Version.txt" />
