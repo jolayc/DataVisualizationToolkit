@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using Microsoft.MixedReality.Toolkit.UI;
-
 namespace DataVisualization.Plotter
 {
     public class DataPlotter : MonoBehaviour
@@ -39,8 +38,8 @@ namespace DataVisualization.Plotter
         [Tooltip("Object which will contain instantiated prefabs in hiearchy")]
         public GameObject PointHolder;
 
-        [Tooltip("(optional) AppBar which will be used for plot use only the APPBar found in MRTK")]
-        public GameObject appBar;
+        [Tooltip("The color of each point (Optional) default is colour gradient)")]
+        public List<Color> colours;
 
         // Object which will contain text in hiearchy
         [Tooltip("Object which will contain text in hiearchy")]
@@ -61,7 +60,7 @@ namespace DataVisualization.Plotter
         private Boolean twoD=false;
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             //if Zpoints was left out initalize it to zeros (2D scatter plot)
             if (Zpoints.Count == 0)
@@ -74,32 +73,32 @@ namespace DataVisualization.Plotter
             }
 
             // Get maxes of each axis
-            float xMax = FindMaxValue(Xpoints);
-            float yMax = FindMaxValue(Ypoints);
-            float zMax = FindMaxValue(Zpoints);
+            float xMax = Mathf.Max(Xpoints.ToArray());
+            float yMax = Mathf.Max(Ypoints.ToArray());
+            float zMax = Mathf.Max(Zpoints.ToArray());
 
             // Get minimums of each axis
-            float xMin = FindMinValue(Xpoints);
-            float yMin = FindMinValue(Ypoints);
-            float zMin = FindMinValue(Zpoints);
+            float xMin = Mathf.Min(Xpoints.ToArray());
+            float yMin = Mathf.Min(Ypoints.ToArray());
+            float zMin = Mathf.Min(Zpoints.ToArray());
 
             //find mean values so we can postion text at center points of generated plot
-            float xMid = FindMiddle(xMax, xMin);
-            float zMid = FindMiddle(zMax, zMin);
-            float yMid = FindMiddle(yMax, yMin);
+            float xMid = Util.FindMiddle(xMax, xMin);
+            float zMid = Util.FindMiddle(zMax, zMin);
+            float yMid = Util.FindMiddle(yMax, yMin);
 
             //center the pivot of object to middle of plot 
-            PointHolder.transform.position = new Vector3(normalize(xMid, xMax, xMin), normalize(yMid, yMax, yMin), normalize(zMid, zMax, zMin)) * plotScale;
+            PointHolder.transform.position = new Vector3(Util.Normalize(xMid, xMax, xMin), Util.Normalize(yMid, yMax, yMin), Util.Normalize(zMid, zMax, zMin)) * plotScale;
 
             //Loop through Pointlist
             for (var i = 0; i < Xpoints.Count; i++)
             {
                 // Get value in poinList at ith "row", in "column" Name, normalize
-                float x = normalize(Xpoints[i], xMax, xMin);
+                float x = Util.Normalize(Xpoints[i], xMax, xMin);
 
-                float y = normalize(Ypoints[i], yMax, yMin);
+                float y = Util.Normalize(Ypoints[i], yMax, yMin);
 
-                float z = normalize(Zpoints[i], zMax, zMin);
+                float z = Util.Normalize(Zpoints[i], zMax, zMin);
 
 
                 // Instantiate as gameobject variable so that it can be manipulated within loop
@@ -123,12 +122,20 @@ namespace DataVisualization.Plotter
 
                 // Scale dataPoint depending on Plot scale
                 dataPoint.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f) * plotScale;
-                // Gets material color and sets it to a new RGB color we define
-                dataPoint.GetComponent<Renderer>().material.color =
-                    new Color(x, y, z, 1.0f);
+                //set point colours
+                if (colours != null && colours.Count > 0)
+                {
+                    dataPoint.GetComponent<Renderer>().material.color = colours[i];
+                }
+                else
+                {
+                    // Default is colour gradient based on coordinates
+                    dataPoint.GetComponent<Renderer>().material.color =
+                        new Color(x, y, z, 1.0f);
+                }
             }
 
-            GameObject title = Instantiate(Text, new Vector3(normalize(xMid, xMax, xMin), normalize(yMax, yMax, yMin), normalize(zMid, zMax, zMin)) * plotScale, Quaternion.identity);
+            GameObject title = Instantiate(Text, new Vector3(Util.Normalize(xMid, xMax, xMin), Util.Normalize(yMax, yMax, yMin), Util.Normalize(zMid, zMax, zMin)) * plotScale, Quaternion.identity);
             //add title 
             title.transform.parent = PointHolder.transform;
             title.GetComponent<TextMesh>().text = titleName;
@@ -142,11 +149,11 @@ namespace DataVisualization.Plotter
             GameObject xLabel;
             if (!twoD)
             {
-                xLabel = Instantiate(Text, new Vector3(normalize(xMid, xMax, xMin), normalize(yMin, yMax, yMin), normalize(zMin, zMax, zMin)) * plotScale, Quaternion.Euler(90, 0, 0));
+                xLabel = Instantiate(Text, new Vector3(Util.Normalize(xMid, xMax, xMin), Util.Normalize(yMin, yMax, yMin), Util.Normalize(zMin, zMax, zMin)) * plotScale, Quaternion.Euler(90, 0, 0));
             }
             else
             {
-                xLabel = Instantiate(Text, new Vector3(normalize(xMid, xMax, xMin), normalize(yMin, yMax, yMin), normalize(zMin, zMax, zMin)) * plotScale, Quaternion.identity);
+                xLabel = Instantiate(Text, new Vector3(Util.Normalize(xMid, xMax, xMin), Util.Normalize(yMin, yMax, yMin), Util.Normalize(zMin, zMax, zMin)) * plotScale, Quaternion.identity);
             }
             xLabel.transform.parent = PointHolder.transform;
             xLabel.GetComponent<TextMesh>().text = xName;
@@ -157,7 +164,7 @@ namespace DataVisualization.Plotter
             if (!twoD)
             {
                 //add z label
-                GameObject zLabel = Instantiate(Text, new Vector3(normalize(xMin, xMax, xMin), normalize(yMin, yMax, yMin), normalize(zMid, zMax, zMin)) * plotScale, Quaternion.Euler(90, 90, 0));
+                GameObject zLabel = Instantiate(Text, new Vector3(Util.Normalize(xMin, xMax, xMin), Util.Normalize(yMin, yMax, yMin), Util.Normalize(zMid, zMax, zMin)) * plotScale, Quaternion.Euler(90, 90, 0));
                 zLabel.transform.parent = PointHolder.transform;
                 zLabel.GetComponent<TextMesh>().text = zName;
                 zLabel.transform.name = "z-label";
@@ -165,7 +172,7 @@ namespace DataVisualization.Plotter
             }
 
             //add y label
-            GameObject yLabel = Instantiate(Text, new Vector3(normalize(xMin, xMax, xMin), normalize(yMid, yMax, yMin), normalize(zMax, zMax, zMin)) * plotScale, Quaternion.Euler(0, 0, 90));
+            GameObject yLabel = Instantiate(Text, new Vector3(Util.Normalize(xMin, xMax, xMin), Util.Normalize(yMid, yMax, yMin), Util.Normalize(zMax, zMax, zMin)) * plotScale, Quaternion.Euler(0, 0, 90));
             yLabel.transform.parent = PointHolder.transform;
             yLabel.GetComponent<TextMesh>().text = yName;
             yLabel.transform.name = "y-label";
@@ -178,74 +185,14 @@ namespace DataVisualization.Plotter
             PointHolder.transform.position = new Vector3(0, 0, 0);
         }
 
-        private float FindMaxValue(List<float> values)
-        {
-            //set initial value to first value
-            float maxValue = values[0];
-
-            //Loop through, overwrite existing maxValue if new value is larger
-            for (var i = 0; i < values.Count; i++)
-            {
-                if (maxValue < values[i])
-                    maxValue = values[i];
-            }
-
-            //Spit out the max value
-            return maxValue;
-        }
-
-        private float FindMinValue(List<float> values)
-        {
-
-            float minValue = values[0];
-
-            //Loop through, overwrite existing minValue if new value is smaller
-            for (var i = 0; i < values.Count; i++)
-            {
-                if (values[i] < minValue)
-                    minValue = values[i];
-            }
-
-            return minValue;
-        }
-
-        private float FindMeanValue(List<float> values)
-        {
-            float total = 0;
-            //Loop through, overwrite existing minValue if new value is smaller
-            for (var i = 0; i < values.Count; i++)
-            {
-                total = total + values[i];
-            }
-            return total / values.Count;
-        }
-
-        private float FindMiddle(float max, float min)
-        {
-            return (max + min) / 2;
-        }
-
-        private float normalize(float value, float max, float min)
-        {
-            //if values are all zero or constant
-            if (max - min == 0)
-            {
-                return value;
-            }
-            else
-            {
-                return (value - min) / (max - min);
-            }
-        }
-
         private void InitalizeInteraction(float xMax, float yMax, float zMax, float xMin, float yMin, float zMin)
         {
-            float xMid = FindMiddle(xMax, xMin);
-            float zMid = FindMiddle(zMax, zMin);
-            float yMid = FindMiddle(yMax, yMin);
+            float xMid = Util.FindMiddle(xMax, xMin);
+            float zMid = Util.FindMiddle(zMax, zMin);
+            float yMid = Util.FindMiddle(yMax, yMin);
 
             BoxCollider boxCollider = PointHolder.AddComponent<BoxCollider>();
-            PointHolder.transform.gameObject.GetComponent<BoxCollider>().size = new Vector3(normalize(xMax, xMax, xMin), normalize(yMax, yMax, yMin), normalize(zMax, zMax, zMin)) * plotScale;
+            PointHolder.transform.gameObject.GetComponent<BoxCollider>().size = new Vector3(Util.Normalize(xMax, xMax, xMin), Util.Normalize(yMax, yMax, yMin), Util.Normalize(zMax, zMax, zMin)) * plotScale;
 
             PointHolder.AddComponent<BoundingBox>();
             PointHolder.GetComponent<BoundingBox>().WireframeEdgeRadius= PointHolder.GetComponent<BoundingBox>().WireframeEdgeRadius * plotScale;
@@ -262,17 +209,6 @@ namespace DataVisualization.Plotter
             PointHolder.GetComponent<BoundingBox>().HandleMaterial= handleMaterial;
             PointHolder.GetComponent<BoundingBox>().ScaleHandlePrefab=scaleHandle;
             PointHolder.GetComponent<BoundingBox>().RotationHandleSlatePrefab=rotationHandle;
-
-            //Optional add appBar
-            if (appBar != null)
-            {
-                GameObject objectBar = Instantiate(appBar, new Vector3(0, 0, 0), Quaternion.identity);
-                objectBar.transform.parent = PointHolder.transform.parent;
-                objectBar.transform.localScale = new Vector3(2f, 2f, 2f) * plotScale;
-                var so= new SerializedObject(objectBar.GetComponent<AppBar>());
-                so.FindProperty("boundingBox").objectReferenceValue = PointHolder.GetComponent<BoundingBox>();
-                so.ApplyModifiedProperties();
-            }
         }
     }
 }
