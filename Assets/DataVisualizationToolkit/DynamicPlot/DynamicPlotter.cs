@@ -8,41 +8,47 @@ namespace DataVisualization.Plotter
     public class DynamicPlotter : MonoBehaviour
     {
         // for DynamicPlotter
+        [Tooltip("Text prefab")]
         public GameObject Text;
+
+        [Tooltip("Prefab that will contain instantiated prefabs in hierarchy")]
         public GameObject PointHolder;
 
+        [Tooltip("Plot point prefab")]
         public Transform PointPrefab;
 
-        public TimeSeriesGraph Graph;
+        public DynamicGraph Graph;
 
         private List<Transform> Points;
 
         // Labels
+        [Tooltip("Title of Plot")]
         public string PlotTitle;
-        public string XAxisName, YAxisName, ZAxisName;
+
+        [Tooltip("X-Axis Label")]
+        public string XAxisName;
+
+        [Tooltip("Y-Axis Label")]
+        public string YAxisName;
+
+        [Tooltip("Z-Axis Label")]
+        public string ZAxisName;
+
+        [Tooltip("Changes size scale of plot")]
+        public float PlotScale = 10;
 
         // Graph resources
         public Material HandleMaterial;
         public Material HandleGrabbedMaterial;
         public GameObject RotationHandle;
         public GameObject ScaleHandle;
-        public float PlotScale;
         private GameObject TimeText;
         private Vector3 GraphRadius;
 
         // from Graph
-        private float GraphXMax, GraphXMid, GraphXMin;
-        private float GraphYMax, GraphYMid, GraphYMin;
-        private float GraphZMax, GraphZMid, GraphZMin;
-
-        //private int PlotScale = 10;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            // Lock scene rendering to 60 fps
-            //Application.targetFrameRate = 60;
-        }
+        private float GraphXMax, GraphXMin;
+        private float GraphYMax, GraphYMin;
+        private float GraphZMax, GraphZMin;
 
         private void Awake()
         {
@@ -61,7 +67,6 @@ namespace DataVisualization.Plotter
 
         public void Init()
         {
-            PlotScale = 1;
             Points = new List<Transform>();
 
             SetMaxMinMid();
@@ -72,7 +77,10 @@ namespace DataVisualization.Plotter
             DrawXAxisLabel();
             DrawYAxisLabel();
             DrawZAxisLabel();
-            DrawTime();
+            if (Graph.isTimeGraph())
+            {
+                DrawTime();
+            }
 
             // Graph is initialized so enable it so Update() can be called
             enabled = true;
@@ -82,15 +90,12 @@ namespace DataVisualization.Plotter
         {
             // Grab max, min and mid points of graph
             GraphXMax = Graph.XMax;
-            GraphXMid = Graph.XMid;
             GraphXMin = Graph.XMin;
 
             GraphYMax = Graph.YMax;
-            GraphYMid = Graph.YMid;
             GraphYMin = Graph.YMin;
 
             GraphZMax = Graph.ZMax;
-            GraphZMid = Graph.ZMid;
             GraphZMin = Graph.ZMin;
         }
 
@@ -103,18 +108,28 @@ namespace DataVisualization.Plotter
             // Configure MRTK components of Graph, e.g. BoundingBox and ManipulationHandler
             PointHolder.AddComponent<BoxCollider>();
             PointHolder.AddComponent<BoundingBox>();
+            PointHolder.GetComponent<BoundingBox>().WireframeEdgeRadius = PointHolder.GetComponent<BoundingBox>().WireframeEdgeRadius;
             PointHolder.GetComponent<BoundingBox>().WireframeMaterial.color = Color.white;
             PointHolder.AddComponent<ManipulationHandler>();
+
+            //scale handle sizes
+            PointHolder.GetComponent<BoundingBox>().ScaleHandleSize = PointHolder.GetComponent<BoundingBox>().ScaleHandleSize;
+            PointHolder.GetComponent<BoundingBox>().RotationHandleSize = PointHolder.GetComponent<BoundingBox>().RotationHandleSize;
+
+            //Optional handle prefab Models
+            PointHolder.GetComponent<BoundingBox>().HandleGrabbedMaterial = HandleGrabbedMaterial;
+            PointHolder.GetComponent<BoundingBox>().HandleMaterial = HandleMaterial;
+            PointHolder.GetComponent<BoundingBox>().ScaleHandlePrefab = ScaleHandle;
+            PointHolder.GetComponent<BoundingBox>().RotationHandleSlatePrefab = RotationHandle;
 
             GraphRadius = PointHolder.GetComponent<BoxCollider>().size / 2;
 
             for (int i = 0; i < numberOfPoints; i++)
             {
                 Transform current_point = Instantiate(PointPrefab);
-                current_point.GetComponent<Renderer>().material.color = Random.ColorHSV(0.0f, 1.0f);
                 current_point.SetParent(PointHolder.GetComponent<BoxCollider>().transform);
                 current_point.localPosition = PointHolder.GetComponent<BoxCollider>().center;
-                current_point.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+                current_point.localScale = new Vector3(0.01f, 0.01f, 0.01f) * PlotScale;
 
                 Points.Add(current_point);
             }
@@ -131,15 +146,11 @@ namespace DataVisualization.Plotter
             Vector3 max_range = GraphRadius;
             Vector3 min_range = -GraphRadius;
 
-            //Debug.Log("max range: " + max_range + " min range: " + min_range);
-
             if (currentIndex < pointFromGraph.XPoints.Count)
             {
                 updated_position.x = Util.NormalizeToRange(min_range.x, max_range.x, pointFromGraph.XPoints[currentIndex], GraphXMax, GraphXMin);
                 updated_position.y = Util.NormalizeToRange(min_range.y, max_range.y, pointFromGraph.YPoints[currentIndex], GraphYMax, GraphYMin);
                 updated_position.z = Util.NormalizeToRange(min_range.z, max_range.z, pointFromGraph.ZPoints[currentIndex], GraphZMax, GraphZMin);
-
-                //Debug.Log(updated_position.ToString("F4"));
 
                 point.localPosition = updated_position;
 

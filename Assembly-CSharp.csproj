@@ -64,11 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DataVisualizationToolkit\DataPlot\DataPlotter.cs" />
-    <Compile Include="Assets\DataVisualizationToolkit\DVT_UsageExample.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DataParser.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DroneAndSineExample.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DronePlotExample.cs" />
+    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DynamicGraph.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\DynamicPlotter.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\PlotPoint.cs" />
-    <Compile Include="Assets\DataVisualizationToolkit\DynamicPlot\TimeSeriesGraph.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\GeoPlot\HistoGramOnMap.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\GeoPlot\mrMap.cs" />
     <Compile Include="Assets\DataVisualizationToolkit\Mapbox\Core\cheap-ruler-cs\CheapRuler.cs" />
