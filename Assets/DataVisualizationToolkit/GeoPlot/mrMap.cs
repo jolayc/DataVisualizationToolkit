@@ -35,7 +35,7 @@ namespace DataVisualization.Plotter
         [Tooltip("The location height of each histogram bar")]
         public List<float> heightValues;
         [Tooltip("The color of each histogram bar (default is white)")]
-        public List<Color> colors;
+        public List<Color> colours;
         [Tooltip("changes size scale of the data points")]
         public float spawnScale = 0.015f;
         [Tooltip("changes max height of the bar")]
@@ -46,7 +46,7 @@ namespace DataVisualization.Plotter
         //used to hold the entire map itself
         private GameObject map;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             map = new GameObject("Map");
             //centre the map and mapHolder
@@ -92,7 +92,7 @@ namespace DataVisualization.Plotter
             map.AddComponent<HistoGramOnMap>();
             map.GetComponent<HistoGramOnMap>().locationStrings = locationStrings;
             map.GetComponent<HistoGramOnMap>().heightValues = heightValues;
-            map.GetComponent<HistoGramOnMap>().colors = colors;
+            map.GetComponent<HistoGramOnMap>().colours = colours;
             map.GetComponent<HistoGramOnMap>().spawnScale = spawnScale;
             map.GetComponent<HistoGramOnMap>().HeightScaleMax = HeightScaleMax;
             map.GetComponent<HistoGramOnMap>().HeightScaleMin = HeightScaleMin;
@@ -118,6 +118,11 @@ namespace DataVisualization.Plotter
             if (zoom < 2)
             {
                 zoom = 2;
+            }
+            //max allowed zoom
+            if(zoom > 22)
+            {
+                zoom = 22;
             }
             map.GetComponent<AbstractMap>().UpdateMap(Conversions.StringToLatLon(location), zoom);
             if (enable3DTerrain)

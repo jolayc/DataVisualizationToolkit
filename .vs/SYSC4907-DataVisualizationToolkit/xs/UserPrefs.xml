@@ -1,33 +1,22 @@
-﻿<Properties StartupConfiguration="{1743443C-6D8A-3E6C-B7BF-55FFA192CBAB}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DataVisualizationToolkit/DynamicPlot/DronePlotExample.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DataVisualizationToolkit/DynamicPlot/PlotPoint.cs">
     <Files>
       <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/PlotPoint.cs" Line="27" Column="21" />
-      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DynamicPlotter.cs" Line="82" Column="28" />
-      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DataParser.cs" Line="1" Column="1" />
-      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DynamicGraph.cs" Line="1" Column="1" />
-      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DroneAndSineExample.cs" Line="87" Column="1" />
-      <File FileName="Assets/DataVisualizationToolkit/DronePlotExample.cs" Line="45" Column="21" />
+      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DynamicPlotter.cs" />
+      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DataParser.cs" />
+      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DynamicGraph.cs" />
+      <File FileName="Assets/DataVisualizationToolkit/DynamicPlot/DroneAndSineExample.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SYSC4907-DataVisualizationToolkit" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="DataVisualizationToolkit" expanded="True">
-                <Node name="DynamicPlot" expanded="True">
-                  <Node name="DronePlotExample.cs" selected="True" />
-                </Node>
-                <Node name="Utilities" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
+          <Node name="SYSC4907-DataVisualizationToolkit" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ad2e2130-600d-4d7b-9979-cb52bb8b7cf5" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

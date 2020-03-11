@@ -16,8 +16,8 @@ namespace DataVisualization.Plotter
 		public string[] locationStrings;
         [Tooltip("The location height of each histogram bar")]
         public List<float> heightValues;
-        [Tooltip("The color of each histogram bar (default is white)")]
-        public List<Color> colors;
+        [Tooltip("The colour of each histogram bar (default is white)")]
+        public List<Color> colours;
         Vector2d[] _locations;
 
         [Tooltip("changes size scale of the data points")]
@@ -33,18 +33,18 @@ namespace DataVisualization.Plotter
 		void Start()
 		{
             //if colors was not set default to white
-            if (colors == null || colors.Count==0)
+            if (colours == null || colours.Count==0)
             {
-                colors = new List<Color>();
+                colours = new List<Color>();
                 for (var i=0; i < heightValues.Count; i++)
                 {
-                    colors.Add(Color.white);
+                    colours.Add(Color.white);
                 }
             }
             if(heightValues!=null && heightValues.Count > 0)
             {
-                maxHeight = FindMaxValue(heightValues);
-                minHeight = FindMinValue(heightValues);
+                maxHeight = Mathf.Max(heightValues.ToArray());
+                minHeight = Mathf.Min(heightValues.ToArray());
             }
             _locations = new Vector2d[locationStrings.Length];
 			_spawnedObjects = new List<GameObject>();
@@ -53,8 +53,8 @@ namespace DataVisualization.Plotter
 				var locationString = locationStrings[i];
 				_locations[i] = Conversions.StringToLatLon(locationString);
                 var instance = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                instance.GetComponent<Renderer>().material.color = colors[i];
-                instance.transform.localScale = new Vector3(spawnScale, (normalize(heightValues[i],maxHeight,minHeight)* HeightScaleMax)+ HeightScaleMin, spawnScale);
+                instance.GetComponent<Renderer>().material.color = colours[i];
+                instance.transform.localScale = new Vector3(spawnScale, (Util.Normalize(heightValues[i],maxHeight,minHeight)* HeightScaleMax)+ HeightScaleMin, spawnScale);
                 //set the parent of the histogram bars to the MapHolder not the map itself since we dont wish for the bars to change scale when altering zoom levels
                 instance.transform.parent = gameObject.transform.parent;
                 instance.transform.localPosition = map.GeoToWorldPosition(_locations[i], true);
@@ -80,7 +80,7 @@ namespace DataVisualization.Plotter
                     var spawnedObject = _spawnedObjects[i];
                     var location = _locations[i];
                     spawnedObject.transform.localPosition = map.GeoToWorldPosition(location, true);
-                    spawnedObject.transform.localScale = new Vector3(spawnScale, (normalize(heightValues[i], maxHeight, minHeight) * HeightScaleMax) + HeightScaleMin, spawnScale);
+                    spawnedObject.transform.localScale = new Vector3(spawnScale, (Util.Normalize(heightValues[i], maxHeight, minHeight) * HeightScaleMax) + HeightScaleMin, spawnScale);
                     //postion the histogram bar above map
                     spawnedObject.transform.localPosition = new Vector3(spawnedObject.transform.position.x, spawnedObject.transform.position.y + spawnedObject.transform.localScale.y / 2, spawnedObject.transform.position.z);
                 }
@@ -105,50 +105,6 @@ namespace DataVisualization.Plotter
                 }
             }
 
-        }
-
-        private float FindMaxValue(List<float> values)
-        {
-            //set initial value to first value
-            float maxValue = values[0];
-
-            //Loop through, overwrite existing maxValue if new value is larger
-            for (var i = 0; i < values.Count; i++)
-            {
-                if (maxValue < values[i])
-                    maxValue = values[i];
-            }
-
-            //Spit out the max value
-            return maxValue;
-        }
-
-        private float FindMinValue(List<float> values)
-        {
-
-            float minValue = values[0];
-
-            //Loop through, overwrite existing minValue if new value is smaller
-            for (var i = 0; i < values.Count; i++)
-            {
-                if (values[i] < minValue)
-                    minValue = values[i];
-            }
-
-            return minValue;
-        }
-
-        private float normalize(float value, float max, float min)
-        {
-            //if values are all zero or constant
-            if (max - min == 0)
-            {
-                return 1;
-            }
-            else
-            {
-                return (value - min) / (max - min);
-            }
         }
     }
 }
