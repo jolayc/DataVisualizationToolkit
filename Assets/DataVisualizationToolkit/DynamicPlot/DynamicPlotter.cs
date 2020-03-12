@@ -112,7 +112,10 @@ namespace DataVisualization.Plotter
             PointHolder.GetComponent<BoundingBox>().WireframeMaterial.color = Color.white;
             PointHolder.AddComponent<ManipulationHandler>();
 
-            //scale handle sizes
+            // Adjust plot size
+            PointHolder.transform.gameObject.GetComponent<BoxCollider>().size *= PlotScale;
+
+            // Scale handle sizes
             PointHolder.GetComponent<BoundingBox>().ScaleHandleSize = PointHolder.GetComponent<BoundingBox>().ScaleHandleSize;
             PointHolder.GetComponent<BoundingBox>().RotationHandleSize = PointHolder.GetComponent<BoundingBox>().RotationHandleSize;
 
@@ -129,7 +132,7 @@ namespace DataVisualization.Plotter
                 Transform current_point = Instantiate(PointPrefab);
                 current_point.SetParent(PointHolder.GetComponent<BoxCollider>().transform);
                 current_point.localPosition = PointHolder.GetComponent<BoxCollider>().center;
-                current_point.localScale = new Vector3(0.01f, 0.01f, 0.01f) * PlotScale;
+                current_point.localScale = new Vector3(0.03f, 0.03f, 0.03f) * PlotScale;
 
                 Points.Add(current_point);
             }
@@ -179,7 +182,7 @@ namespace DataVisualization.Plotter
             // Add title text
             plotTitle.transform.SetParent(PointHolder.transform);
             plotTitle.GetComponent<TextMesh>().text = PlotTitle;
-            plotTitle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            plotTitle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f) * PlotScale;
             plotTitle.GetComponent<TextMesh>().anchor = TextAnchor.LowerCenter;
             plotTitle.transform.position = new Vector3(0, GraphRadius.y, -GraphRadius.x);
         }
@@ -191,7 +194,7 @@ namespace DataVisualization.Plotter
             // Add time text
             TimeText.transform.SetParent(PointHolder.transform);
             TimeText.GetComponent<TextMesh>().text = "";
-            TimeText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            TimeText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f) * PlotScale;
             TimeText.GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
             TimeText.transform.position = new Vector3(0, -GraphRadius.y, -GraphRadius.z);
         }
@@ -214,7 +217,7 @@ namespace DataVisualization.Plotter
                 text = "x-axis";
             }
             xlabel.GetComponent<TextMesh>().text = text;
-            xlabel.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            xlabel.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f) * PlotScale;
             xlabel.GetComponent<TextMesh>().anchor = TextAnchor.LowerCenter;
             xlabel.transform.position = new Vector3(0, -GraphRadius.y, -GraphRadius.z);
         }
@@ -237,7 +240,7 @@ namespace DataVisualization.Plotter
                 text = "y-axis";
             }
             ylabel.GetComponent<TextMesh>().text = text;
-            ylabel.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            ylabel.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f) * PlotScale;
             ylabel.GetComponent<TextMesh>().anchor = TextAnchor.UpperCenter;
             ylabel.transform.position = new Vector3(-GraphRadius.x, 0, GraphRadius.z);
         }
@@ -260,7 +263,7 @@ namespace DataVisualization.Plotter
                 text = "z-axis";
             }
             zlabel.GetComponent<TextMesh>().text = text;
-            zlabel.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            zlabel.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f) * PlotScale;
             zlabel.GetComponent<TextMesh>().anchor = TextAnchor.LowerCenter;
             zlabel.transform.position = new Vector3(-GraphRadius.x, -GraphRadius.y, 0);
         }
