@@ -1,5 +1,5 @@
 # Authors
-Joseph Laycano (Dynamic plotting)
+Joseph Laycano (Dynamic plotting)  
 Jason Wang (Static Plotting and Geo Plotting)
 
 # Dependencies 
