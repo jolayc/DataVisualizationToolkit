@@ -132,7 +132,7 @@ namespace DataVisualization.Plotter
                 Transform current_point = Instantiate(PointPrefab);
                 current_point.SetParent(PointHolder.GetComponent<BoxCollider>().transform);
                 current_point.localPosition = PointHolder.GetComponent<BoxCollider>().center;
-                current_point.localScale = new Vector3(0.03f, 0.03f, 0.03f) * PlotScale;
+                current_point.localScale = new Vector3(0.1f, 0.1f, 0.1f) * PlotScale;
 
                 Points.Add(current_point);
             }
