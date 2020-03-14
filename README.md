@@ -22,3 +22,17 @@ This module allows users to plot data related to real world locations
 
 # Dynamic Plotting
 This module allows user to plot animated points  
+
+# Building For Hololens
+1. use UWP for building
+2. use .Net scripting backend
+3. Build type D3D
+4. In publish settings ensure SpatialPerception and InternetClient is enabled
+## setting up Visual studio to build 
+1. tools-> Extensions and updates look for sqlite
+2. install SQLite for Universal Windows Platform
+3. Right click on references of the default project
+4. Add references
+5. Expand Universal Windows on the left click Extensions
+6. check SQLite for universal Windows Platform  
+<img src="https://i.imgur.com/6prfnvr.jpg" width="400" height="400"> <img src="https://i.imgur.com/UPKUPZw.jpg" width="400" height="400">
