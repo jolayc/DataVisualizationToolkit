@@ -28,7 +28,7 @@ This module allows user to plot animated points
 2. use .Net scripting backend
 3. Build type D3D
 4. In publish settings ensure SpatialPerception and InternetClient is enabled
-## setting up Visual studio to build 
+### setting up Visual studio to build 
 1. tools-> Extensions and updates look for sqlite
 2. install SQLite for Universal Windows Platform
 3. Right click on references of the default project
