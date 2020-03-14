@@ -1,6 +1,6 @@
 # Authors
 Joseph Laycano (Dynamic plotting)  
-Jason Wang (Static Plotting and Geo Plotting)
+Jason Wang (Static point Plotting and Geographic Plotting)
 
 # Dependencies 
 Mixed Reality Tool Kit (MRTK)
