@@ -28,6 +28,8 @@ This module allows users to plot data related to real world locations
 ## Dynamic Plotting
 This module allows user to plot animated points  
 
+[![](https://i.imgur.com/shKYGJB.png)](http://www.youtube.com/watch?v=abUTxeNvdwg "Data Visualization Toolkit Demonstration Video Series - Static Plotting Functionality")
+
 ## Building For Hololens
 1. use UWP for building
 2. use .Net scripting backend
