@@ -6,7 +6,7 @@ Jason Wang (Static Plotting and Geographic Plotting)
 
 ## Dependencies 
 Mixed Reality Toolkit-Unity (MRTK)
-[Available here] (https://github.com/microsoft/MixedRealityToolkit-Unity)
+[Available here](https://github.com/microsoft/MixedRealityToolkit-Unity)
 
 ## Setup  
 1. Import MRTK into the Unity project
