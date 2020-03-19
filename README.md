@@ -13,6 +13,7 @@ Mixed Reality Tool Kit (MRTK)
 3. Add Mix reality tool kit config to the scene
 4. Enter your access token for mapbox into the mapbox setup menu
 5. run the scene to ensure everything was added correcly
+[![Data Visualization Toolkit Demonstration Video Series - Introduction & Set up](https://i.imgur.com/f0y7q1q.png)](http://www.youtube.com/watch?v=gPphdNLEayo "Data Visualization Toolkit Demonstration Video Series - Introduction & Set up")
 
 ## Static Plotting
 This module allows users to plot static points in 3D or 2D  
