@@ -19,6 +19,8 @@ Mixed Reality Tool Kit (MRTK)
 This module allows users to plot static points in 3D or 2D  
 <img src="https://i.imgur.com/hwFQV0H.jpg" width="324" height="324"> <img src="https://i.imgur.com/HSD8MDH.jpg" width="424" height="324">
 
+[![](https://i.imgur.com/nqutXme.png)](http://www.youtube.com/watch?v=DI6Th80Ve7Y "Data Visualization Toolkit Demonstration Video Series - Static Plotting Functionality")
+
 ## Geographic Plotting
 This module allows users to plot data related to real world locations   
 <img src="https://i.imgur.com/lfMh6C1.jpg" width="424" height="324"> <img src="https://i.imgur.com/lmoW3Aa.png" width="324" height="324">
