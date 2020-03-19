@@ -14,7 +14,7 @@ Mixed Reality Tool Kit (MRTK)
 4. Enter your access token for mapbox into the mapbox setup menu
 5. run the scene to ensure everything was added correcly  
 
-![Download DVT Unity Package](https://drive.google.com/file/d/1oF-D8vvg3qXeNqasi91t1Oeps-qcEKB2/view)
+[Download DVT Unity Package](https://drive.google.com/file/d/1oF-D8vvg3qXeNqasi91t1Oeps-qcEKB2/view)
 #### How To Video
 [![Data Visualization Toolkit Demonstration Video Series - Introduction & Set up](https://i.imgur.com/f0y7q1q.png)](http://www.youtube.com/watch?v=gPphdNLEayo "Data Visualization Toolkit Demonstration Video Series - Introduction & Set up")
 
